@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.18.3.xsd">
+
+	<bean id="MailParserProcessor" class="mail.MailParserProcessor"/>
+	
+	<bean id="MailParserProcessor618" class="mail.MailParserProcessor618"/>
+	
+	<bean id="MailParserProcessorAppliance" class="mail.MailParserProcessorAppliance"/>
+	
+	<bean id="TemplateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="classpath:/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="true" />
+	</bean>
+	
+	<bean id="TemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+    	<property name="templateResolver" ref="TemplateResolver" />
+	</bean>
+	
+	<bean id="MailPattternProcessor" class="mail.MailPattternProcessor">
+		<property name="templateEngine" ref="TemplateEngine" />
+	</bean>
+
+	<camelContext id="CamelMailTool" xmlns="http://camel.apache.org/schema/spring">
+
+		<route id="r1">
+			<from uri="file://.\\patttern?maxMessagesPerPoll=1&amp;readLock=rename&amp;
+ 			    											delete=true&amp;
+ 			    											delay=1000&amp;
+ 			    											charset=UTF-8" />
+			<bean ref="MailPattternProcessor" method="clean" />
+			<split streaming="true">
+ 				<tokenize token="\r\n|\n"/>
+ 				<bean ref="MailPattternProcessor" method="parser" />
+ 			</split>
+ 			<bean ref="MailPattternProcessor" method="change" />
+ 			<split>
+				<simple>${body}</simple>
+				<bean ref="MailPattternProcessor" method="process" />
+				<!-- <to uri="smtp://smtp.gmail.com:587?username=XXXXXX&amp;password=XXXXXX&amp;mail.smtp.auth=true&amp;mail.smtp.starttls.enable=true" /> -->
+			</split>
+		</route>
+		
+		<route id="r2">
+			<from uri="file://.\\work?maxMessagesPerPoll=1&amp;readLock=rename&amp;
+ 			    											delete=true&amp;
+ 			    											delay=1000&amp;
+ 			    											charset=UTF-8" />
+			<split streaming="true">
+ 				<tokenize token="\r\n|\n"/>
+ 				<bean ref="MailParserProcessor" method="process" />
+ 				<to uri="smtp://smtp.gmail.com:587?username=XXXX&amp;password=XXXXXXX&amp;mail.smtp.auth=true&amp;mail.smtp.starttls.enable=true" />
+ 			</split>
+		</route>
+		
+	</camelContext>
+
+</beans>

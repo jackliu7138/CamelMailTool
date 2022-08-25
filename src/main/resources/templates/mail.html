@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" />
+    </head>
+
+    <body>
+        親愛的供應商合作夥伴，您好：<br />
+        感謝您對購物中心的支持！<br />
+        貴司近30天熱銷/高流量且已無庫存品項如下表，<br />
+        煩請針對下述商品確認庫存狀況並儘可能補齊貨量，以期共創銷售高峰<br />
+        (若您於收到信件前已補量，請忽略即可，或可視狀況增加補貨量)<br />
+        <br />
+        <table>
+            <tbody>
+                <tr height="20" style="height: 15pt;">
+                    <td width="116" style="height: 15pt;width: 87pt;color: white;font-weight: 700;text-align: center;vertical-align: middle;background: rgb(53, 28, 117);padding: 0px;font-size: 11pt;font-family: Calibri;border: none;white-space: nowrap;">
+                        TEAM
+                    </td>
+                    <td width="116" style="height: 15pt;width: 87pt;color: white;font-weight: 700;text-align: center;vertical-align: middle;background: rgb(53, 28, 117);padding: 0px;font-size: 11pt;font-family: Calibri;border: none;white-space: nowrap;">
+                        子站編號
+                    </td>
+                    <td width="116" style="height: 15pt;width: 87pt;color: white;font-weight: 700;text-align: center;vertical-align: middle;background: rgb(53, 28, 117);padding: 0px;font-size: 11pt;font-family: Calibri;border: none;white-space: nowrap;">
+						子站</td>
+                    <td width="116" style="height: 15pt;width: 87pt;color: white;font-weight: 700;text-align: center;vertical-align: middle;background: rgb(53, 28, 117);padding: 0px;font-size: 11pt;font-family: Calibri;border: none;white-space: nowrap;">
+                        商品類型
+                    </td>
+                    <td width="116" style="height: 15pt;width: 87pt;color: white;font-weight: 700;text-align: center;vertical-align: middle;background: rgb(53, 28, 117);padding: 0px;font-size: 11pt;font-family: Calibri;border: none;white-space: nowrap;">
+                        商品編號
+                    </td>
+                    <td width="116" style="height: 15pt;width: 87pt;color: white;font-weight: 700;text-align: center;vertical-align: middle;background: rgb(53, 28, 117);padding: 0px;font-size: 11pt;font-family: Calibri;border: none;white-space: nowrap;">
+                        商品名稱
+                    </td>
+                </tr>
+				<tr height="20" style="height: 16pt;" th:each="list : ${list}">
+                    <td width="116" style="padding: 0px; font-size: 11pt; font-family: Calibri;text-align: center; vertical-align: middle; border: none; white-space: nowrap;" th:text="${list.a}"></td>
+                    <td width="116" style="padding: 0px; font-size: 11pt; font-family: Calibri;text-align: center; vertical-align: middle; border: none; white-space: nowrap;" th:text="${list.b}"></td>
+                    <td width="116" style="padding: 0px; font-size: 11pt; font-family: Calibri;text-align: center; vertical-align: middle; border: none; white-space: nowrap;" th:text="${list.c}"></td>
+                    <td width="116" style="padding: 0px; font-size: 11pt; font-family: Calibri;text-align: center; vertical-align: middle; border: none; white-space: nowrap;" th:text="${list.d}"></td>
+                    <td width="116" style="padding: 0px; font-size: 11pt; font-family: Calibri;text-align: center; vertical-align: middle; border: none; white-space: nowrap;" th:text="${list.e}"></td>
+					<td width="116" style="padding: 0px; font-size: 11pt; font-family: Calibri;text-align: center; vertical-align: middle; border: none; white-space: nowrap;" th:text="${list.f}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br />
+        補貨操作說明如下：<br />
+			● 直出商品<br />
+				功能路徑：商品可銷量管理＞可銷售數量調整 或 可銷售數量整批調整<br />
+				操作說明：https://reurl.cc/44Y2ov <br />
+		您也可透過【<a href="https://scm.by.monday.com.tw:9999/GdStock/QueryProductShortage.aspx">商品可銷量管理＞開賣商品缺貨通知查詢確認</a>】功能查詢近30天缺貨品項&進行補貨<br />
+		若有相關問題，亦可洽廠服窗口詢問<br />
+		聯繫方式可至【工具箱>作業窗口一覽表】查詢<br />
+        <br />
+        感謝您的配合，敬祝業績長紅
+    </body>
+</html>
